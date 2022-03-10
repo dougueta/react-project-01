@@ -1,0 +1,73 @@
+{
+  "root": "apps/react-project-01",
+  "sourceRoot": "apps/react-project-01/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/react-project-01",
+        "index": "apps/react-project-01/src/index.html",
+        "baseHref": "/",
+        "main": "apps/react-project-01/src/main.tsx",
+        "polyfills": "apps/react-project-01/src/polyfills.ts",
+        "tsConfig": "apps/react-project-01/tsconfig.app.json",
+        "assets": [
+          "apps/react-project-01/src/favicon.ico",
+          "apps/react-project-01/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/react-project-01/src/environments/environment.ts",
+              "with": "apps/react-project-01/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "react-project-01:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "react-project-01:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/react-project-01/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/react-project-01"],
+      "options": {
+        "jestConfig": "apps/react-project-01/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
